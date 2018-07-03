@@ -119,9 +119,10 @@ const manageView = (function(){
      * 10자 미만일때
      */
     let clicked = false;
-    const $textarea = $(".textarea textarea");
+    
     $(".ok").on("click",function(){
         // 예외처리
+        const $textarea = $(".textarea textarea");
         let errMessage: string | null = null;
         const outputText:string = $textarea.val() as string; 
         if(clicked) errMessage = "쫌만 기다려줘~~~~";
@@ -137,7 +138,7 @@ const manageView = (function(){
             dataType: "json",
             type:"POST",
             data:{
-                content: $textarea.text()
+                content: $textarea.val()
             }
         }).always(() => clicked = false)
         .done((result) => {
