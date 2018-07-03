@@ -1,5 +1,5 @@
 "use strict";
-var CLIENT_ID = "835389341072-kr7rep1n0c3jmntkl1qvaeli4r3klf8s.apps.googleusercontent.com";
+var CLIENT_ID = "835389341072-68m6ok02dugcmjtvap1b1t7v60blbr3d.apps.googleusercontent.com";
 var REDIRECT_URI = location.origin + location.pathname;
 ;
 var appStatus = {

@@ -1,4 +1,4 @@
-const CLIENT_ID = "835389341072-kr7rep1n0c3jmntkl1qvaeli4r3klf8s.apps.googleusercontent.com";
+const CLIENT_ID = "835389341072-68m6ok02dugcmjtvap1b1t7v60blbr3d.apps.googleusercontent.com";
 const REDIRECT_URI = location.origin + location.pathname;
 const enum EC {
     SESSION_CANNNOT_FOUND = 102,

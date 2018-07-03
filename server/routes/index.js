@@ -1,7 +1,7 @@
 var request = require('request');
 var qs = require('querystring');
-const CLIENT_ID = "835389341072-kr7rep1n0c3jmntkl1qvaeli4r3klf8s.apps.googleusercontent.com";
-const CLIENT_SECRET = "44__Djd5wbgRzKhu_meEeBEa";
+const CLIENT_ID = "835389341072-68m6ok02dugcmjtvap1b1t7v60blbr3d.apps.googleusercontent.com";
+const CLIENT_SECRET = "KhqBo3Ozi3Y3ByP8I9goLDY1";
 
 var EC = {
     SESSION_CANNNOT_FOUND : [102,"세션 데이터 없음"],
