@@ -21,7 +21,6 @@ var manageView = (function () {
             $(".ok").css("display", "block");
         },
         sendComplete: function () {
-            $(".ok").css("display", "none");
             $(".textarea textarea").val("질문해줘서 고마워!! 꼭 답변쓸께!!");
         }
     };
@@ -106,9 +105,9 @@ var manageView = (function () {
      * 10자 미만일때
      */
     var clicked = false;
-    var $textarea = $(".textarea textarea");
     $(".ok").on("click", function () {
         // 예외처리
+        var $textarea = $(".textarea textarea");
         var errMessage = null;
         var outputText = $textarea.val();
         if (clicked)
@@ -129,7 +128,7 @@ var manageView = (function () {
             dataType: "json",
             type: "POST",
             data: {
-                content: $textarea.text()
+                content: $textarea.val()
             }
         }).always(function () { return clicked = false; })
             .done(function (result) {
