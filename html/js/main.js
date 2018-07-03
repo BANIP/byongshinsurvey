@@ -1,6 +1,6 @@
 "use strict";
 var CLIENT_ID = "835389341072-kr7rep1n0c3jmntkl1qvaeli4r3klf8s.apps.googleusercontent.com";
-var REDIRECT_URI = "http://localhost:8080";
+var REDIRECT_URI = location.origin + location.pathname;
 ;
 var appStatus = {
     verified: false,
