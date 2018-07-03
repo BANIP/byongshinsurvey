@@ -1,0 +1,18 @@
+extends ./layout.pug
+block title
+  title 안녕
+  link(rel="stylesheet" href="./css/main.css")
+block content
+  #deco.full
+    img.sun(src='./img/sun.gif')
+  #main.full
+    img.message(src='./img/message_0.gif')
+    .textarea
+        img.background(src='./img/box_0.gif')
+        textarea(maxlength=1000 placeholder="궁금한점! 해주고싶은 말!")
+    img.flower.first(src='./img/flower_0.gif')
+    img.flower.second(src='./img/flower_1.gif')
+    span.hello 안녕!!
+    img.ok(src='./img/ok.png')
+  script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+  script(src="./js/main.js")

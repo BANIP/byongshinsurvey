@@ -1,0 +1,84 @@
+*{
+    box-sizing: border-box;
+    position:absolute;
+}
+img{
+    display:block;
+    left:50vw;
+    transform:translate(-50%);
+}
+body, html{
+    padding:0;
+    margin:0;
+}
+.full{
+    width:100vw;
+    height:100vh;
+}
+
+#deco .sun{
+    left:0;
+    top:0;
+    height:60vh;
+    transform:none;
+}
+
+.flower{
+    width: 30vw;
+}
+
+.flower.first{
+    top:0vh;
+    left:80vw;
+}
+
+
+.flower.second{
+    top:70vh;
+    left:20vw;
+}
+
+#main .message{
+    height:40vh;
+    top:0;
+
+}
+
+#main .textarea{
+    bottom:20vh;
+    width:100vw;
+    height:40vh;
+}
+
+#main .textarea .background{
+    width:100vw;
+    height:100%;
+}
+
+#main .textarea textarea{
+    width: 100%;
+    height:100%;
+    background:transparent;
+    border:none;
+    padding:7vh 9vw
+}
+
+
+#main .ok{
+    bottom:0;
+    height:20vh;
+    display:none;
+}
+
+.hello{
+    right:10vw;
+    top:20vh;
+    transform:rotate(45deg);
+    display:none;
+    animation: 100ms colorBliking infinite
+}
+
+@keyframes colorBliking{
+    0%{color:black; text-shadow:0px 0px 2px white;}
+    100%{color:white ;text-shadow:0px 0px 2px black;}
+}
