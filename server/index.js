@@ -37,7 +37,7 @@ module.exports = function(server){
       console.log("connected to mongod server");
   });
 
-  mongoose.connect("mongodb://localhost/survey");
+  mongoose.connect("mongodb://localhost:27017/survey");
 
 
   // [SET ROUTER]
