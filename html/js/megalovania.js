@@ -45,7 +45,7 @@ let noteInfo = notes
         offset = 2900,
         perpectTop = $("hr.judgeline").offset().top / innerHeight - 0.05,
         speed = 600;
-        if(isMobile.any) offset -= 300
+        
     var playInterval;
     let isStart = false;
     
@@ -307,13 +307,16 @@ function startTriggerInit(){
         }, interval);
     }
     $("body").on("click keydown", function() {
+        if(isStart) return
+        isStart = true;
         if(isMobile.any){
             try{document.body.webkitRequestFullScreen()} catch(e){ console.error(e)}
             try{document.body.requestFullScreen()}catch(e){ console.error(e)}
+            setTimeout(gameStart,2000);
+        } else {
+            gameStart();
         }
-        if(isStart) return
-        isStart = true;
-        setTimeout(gameStart,2000);
+        
         
     
     });
