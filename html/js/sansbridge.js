@@ -97,7 +97,7 @@ const startBridge = () => {
             sansTyping("이런 날엔, 너 같은 호기심 많은 꼬마들은... ",() => resolve(2000))
         },
         5:(resolve) => {
-            $("<img src='../img/sans_gif.gif' />")
+            $("<img src='./img/sans_gif.gif' />")
                 .addClass("absolutlyCenter").appendTo("body").css({
                 width:"20vw",
             }).fadeIn(1000,() => resolve(1000))
