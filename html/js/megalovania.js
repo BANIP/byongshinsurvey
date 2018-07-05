@@ -65,6 +65,7 @@ let noteInfo = notes
     function pushnote(pclass) {
         $(pclass + ".key-intro")[0].classList.add("push");
         var note = $(pclass + ".note:first")
+        if(note.length == 0)return;
         var timing = note.css("top").toString().replace("px", "");
         var noteoffset = $("#display .note").position().top / innerHeight;
     
@@ -174,6 +175,7 @@ let noteInfo = notes
         e.preventDefault();
         const touches = e.originalEvent.touches;
         const now = Date.now();
+        console.log(touches.length)
         for(let i = 0; i < touches.length; i++){
             
             const touch = touches.item(i);
