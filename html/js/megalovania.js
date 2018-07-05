@@ -240,7 +240,7 @@ let noteInfo = notes
 
 function startTriggerInit(){
     
-    $("body .startbutton").on("click keydown", function() {
+    $("body").on("click keydown", function() {
         if(isMobile.any){
             try{document.body.webkitRequestFullScreen()} catch(e){ console.error(e)}
             try{document.body.requestFullScreen()}catch(e){ console.error(e)}
