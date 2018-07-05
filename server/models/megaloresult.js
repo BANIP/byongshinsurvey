@@ -5,7 +5,7 @@ var megaloResult = new mongoose.Schema({
     miss: Number,
     score: Number,
     allScore: Number,
-    playerRank: Number,
+    playerRank: String,
     percent: Number,
     combo: Number,
     id: String,

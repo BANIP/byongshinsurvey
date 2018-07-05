@@ -173,8 +173,12 @@ let noteInfo = notes
     }
 
     let remainTouches = []
-    $("body").on("touchstart", function(e) {
+
+    $("*").on("touchstart touchmove touchend",function(e){
         if(isStart) e.preventDefault();
+    })
+
+    $("body").on("touchstart", function(e) {
         const touches = e.originalEvent.touches;
         const now = Date.now();
         console.log(touches.length)
@@ -190,12 +194,7 @@ let noteInfo = notes
         }
     });
 
-    $("body").on("touchmove", function(e) {
-        if(isStart) e.preventDefault();
-    });
-
     $("body").on("touchend",(e) => {
-        if(isStart) e.preventDefault();
         const isEnabled = [false,false,false,false];
 
         //remainTouches 초기화
@@ -239,15 +238,7 @@ let noteInfo = notes
     
 
 function startTriggerInit(){
-    
-    $("body").on("click keydown", function() {
-        if(isMobile.any){
-            try{document.body.webkitRequestFullScreen()} catch(e){ console.error(e)}
-            try{document.body.requestFullScreen()}catch(e){ console.error(e)}
-        }
-        if(isStart) return
-        isStart = true;
-
+    const gameStart = () => {
         $(".startbutton").addClass("hide");
         setTimeout(function() {
             $(".gameaudio")[0].play();
@@ -314,6 +305,16 @@ function startTriggerInit(){
             }
             nowTime += interval;
         }, interval);
+    }
+    $("body").on("click keydown", function() {
+        if(isMobile.any){
+            try{document.body.webkitRequestFullScreen()} catch(e){ console.error(e)}
+            try{document.body.requestFullScreen()}catch(e){ console.error(e)}
+        }
+        if(isStart) return
+        isStart = true;
+        setTimeout(gameStart,2000);
+        
     
     });
 }
