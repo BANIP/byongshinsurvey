@@ -51,15 +51,13 @@ let noteInfo = notes
     
     function showMessage(pclass, descript,color) {
         var mes = $(".cloneable.message").clone();
-        mes.text(descript);
+        mes.text(descript).css({"color": color,"textWidth":"bold"});
         mes[0].classList.remove("cloneable");
         mes[0].classList.add(pclass);
         mes.appendTo("#display");
         mes.animate({
-            "top": "350px",
+            "top": "420px",
             "opacity": "0",
-            "color": color,
-            "textWidth":"bold",
         }, "slow", "swing", function() {
             $(this).remove();
         });
