@@ -26,6 +26,8 @@ var manageView = (function () {
         },
         sendComplete: function () {
             $(".textarea textarea").val("질문해줘서 고마워!! 꼭 답변쓸께!!");
+            $(".ok").css("display", "none");
+
         }
     };
 })();

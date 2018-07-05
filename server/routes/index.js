@@ -71,13 +71,6 @@ module.exports = function(app,{ Survey, MegaloResult }){
 
     });
 
-    app.get('/api/list',function(req,res){
-        Survey.find((err, surveys) => {
-            if(err) return outputError(res,EC.DATABASE_ERROR);
-            res.json(surveys);
-        })
-    });
-
     app.get('/api/iswrite',function(req,res){
         new Promise((resolve,reject) => {
             getUserInfo(

@@ -378,6 +378,10 @@ function startTriggerInit(){
                     "marginTop":"2em",
                     "color":"red"
                 }).appendTo("body")
+                if(isMobile.any) $(`<div>폰보단 컴터가 더 할만함 ㅎ</div>`).css({
+                    "marginTop":"2em",
+                    "color":"red"
+                }).appendTo("body")
                 resolve();
             },  
         }
