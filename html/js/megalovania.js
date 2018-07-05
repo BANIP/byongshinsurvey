@@ -361,6 +361,11 @@ function startTriggerInit(){
             },
             1 : (resolve) => {
                 $(`<div>총점 ${score}점<small>/${allScore}점</small></div>`).appendTo("body")
+                $(`<div>와!! ${great}개</small></div>`).appendTo("body")
+                $(`<div>샌즈! ${good}개</small></div>`).appendTo("body")
+                $(`<div>파피루스... ${miss}개</small></div>`).appendTo("body")
+                $(`<div>맥스콤보 ${combo}/<small>/${great + good + miss}</small></small></div>`).appendTo("body")
+
                 resolve();
             },  
             2 : (resolve) => {
