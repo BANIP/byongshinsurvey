@@ -46,6 +46,7 @@ let noteInfo = notes
         threshold = 50,
         perpectTop = $("hr.judgeline").offset().top / innerHeight - 0.05,
         speed = 600;
+        if(isMobile.any) offset += 300;
         
     var playInterval;
     let isStart = false;
@@ -181,7 +182,6 @@ let noteInfo = notes
     })
     $("body").on("touchend",(e) => {
         if(isStart) e.preventDefault();
-        const isEnabled = [false,false,false,false];
         let deletedTouch;
         const touches = e.originalEvent.touches;
         const touchids = []
@@ -194,7 +194,10 @@ let noteInfo = notes
         //이전상태의 터치에서 비활성된 터치 검색
         remainTouches.forEach((remainTouch,key) => {
             if(!remainTouch) return;
-            if(!touchids.includes(key)) deletedTouch = remainTouch;
+            if(!touchids.includes(key)){
+                deletedTouch = remainTouch;
+                remainTouches[key] = null;
+            }
         });
         
         // push상태 제거
