@@ -233,7 +233,7 @@ let noteInfo = notes
 
 function startTriggerInit(){
     let isStart = false;
-    $("body").on("click keydown", function() {
+    $("body .startbutton").on("touchstart click keydown", function() {
         if(isStart) return
         isStart = true;
         $(".startbutton").addClass("hide");
