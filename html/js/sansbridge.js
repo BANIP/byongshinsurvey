@@ -52,7 +52,7 @@ const startBridge = () => {
         restInterval:100,
         $dom:$sansMes
     })
-
+    
     const audios = {
         get : new Audio("./media/und_get.ogg"),
         battleFade : new Audio("./media/und_battle_fade.ogg"),
@@ -175,4 +175,4 @@ setCommand(["up","up"
     ,[$(".flower.second"),"click"] ],
     startBridge
 );
-
+new Audio("./media/und_get.ogg");
