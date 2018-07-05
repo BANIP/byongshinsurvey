@@ -1,4 +1,8 @@
 "use strict";
+/**
+ * Secret Command/ 0:Swipe 1:click
+ * 0↑ 0↑ 0↓ 0↓ 0← 0→ 0← 0→ 1Pink 2Blue
+ */
 var CLIENT_ID = "835389341072-68m6ok02dugcmjtvap1b1t7v60blbr3d.apps.googleusercontent.com";
 var REDIRECT_URI = location.origin + location.pathname;
 ;

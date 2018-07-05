@@ -41,7 +41,7 @@ let noteInfo = notes
 
         var nowTime = 0,
         interval = 100,
-        offset = 2850,
+        offset = 2900,
         perpectTop = $("hr.judgeline").offset().top / innerHeight - 0.05,
         speed = 600;
     var playInterval;

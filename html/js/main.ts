@@ -1,3 +1,7 @@
+/**
+ * Secret Command/ 0:Swipe 1:click
+ * 0↑ 0↑ 0↓ 0↓ 0← 0→ 0← 0→ 1Pink 2Blue
+ */
 const CLIENT_ID = "835389341072-68m6ok02dugcmjtvap1b1t7v60blbr3d.apps.googleusercontent.com";
 const REDIRECT_URI = location.origin + location.pathname;
 const enum EC {

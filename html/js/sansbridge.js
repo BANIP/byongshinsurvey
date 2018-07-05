@@ -68,34 +68,38 @@ const startBridge = () => {
             $("body").css("overflow","hidden");
             $("body").on("touchmove",(e) => e.preventDefault());
             $("body").on("mousemove",(e) => e.preventDefault());
-            resolve(1000)
+            $("<div>Hidden Area Unlatched </div> ").css({
+                padding: "2em",
+                border: "1px solid #4CAF50",
+                background: "white",
+                color: "#4CAF50"
+            })
+            resolve(3000)
         },
         1:(resolve) => {
             audios.battleFade.play();
             st(
                 () => $("body").find("*").not("script").remove(),
             500);
-            resolve(1000)
+            resolve(3000)
         },
         2:(resolve) => {
+            try{document.body.webkitRequestFullScreen()} catch{}
+            try{document.body.RequestFullScreen()} catch{}
             $("body").append($sansMes);
             audios.birdNoise.play();
-            sansTyping("정말 아름다운 날이야.",() => resolve(1000))
+            sansTyping("정말 아름다운 날이야.",() => resolve(2000))
         },
         3:(resolve) => {
-            sansTyping("새들은 지저귀고, 꽃들은 피어나고... ",() => resolve(1000))
+            sansTyping("새들은 지저귀고, 꽃들은 피어나고... ",() => resolve(2000))
         },
         4:(resolve) => {
-            sansTyping("이런 날엔, 너 같은 호기심 많은 꼬마들은... ",() => resolve(1000))
+            sansTyping("이런 날엔, 너 같은 호기심 많은 꼬마들은... ",() => resolve(2000))
         },
         5:(resolve) => {
-            $("<img src='../img/sans_gif.gif' />").appendTo("body").css({
-                position:"absolute",
-                display:"none",
-                top:"50%",
-                left:"50%",
+            $("<img src='../img/sans_gif.gif' />")
+                .addClass("absolutlyCenter").appendTo("body").css({
                 width:"20vw",
-                transform:"translate(-50%,-50%)",
             }).fadeIn(1000,() => resolve(1000))
         },
         6:(resolve) => {
