@@ -49,7 +49,7 @@ let noteInfo = notes
     var playInterval;
     let isStart = false;
     
-    function showMessage(pclass, descript) {
+    function showMessage(pclass, descript,color) {
         var mes = $(".cloneable.message").clone();
         mes.text(descript);
         mes[0].classList.remove("cloneable");
@@ -57,7 +57,9 @@ let noteInfo = notes
         mes.appendTo("#display");
         mes.animate({
             "top": "350px",
-            "opacity": "0"
+            "opacity": "0",
+            "color": color,
+            "textWidth":"bold",
         }, "slow", "swing", function() {
             $(this).remove();
         });
@@ -73,11 +75,11 @@ let noteInfo = notes
     
         if (timing == undefined) return;
         pclass = pclass.substring(1);
-        const renewalStatus = (targetStatus,scoreAmount,isAddcombo,message) => {
+        const renewalStatus = (targetStatus,scoreAmount,isAddcombo,message,color) => {
             $(".n-" + targetStatus).text((i, v) => parseInt(v) + 1 );
             $(".n-score").text((i, v) => parseInt(v) + scoreAmount );
             addCombo(isAddcombo);
-            showMessage(pclass, message);
+            showMessage(pclass, message,color);
 
             //눌려진상태 갱신
             note[0].classList.add("pushed");
@@ -85,11 +87,11 @@ let noteInfo = notes
         }
 
         if (perpectTop - 0.04 < noteoffset && perpectTop + 0.04 > noteoffset) {
-            renewalStatus("great",2,true,"와!!")
+            renewalStatus("great",2,true,"와!!","green")
         } else if (perpectTop - 0.15 < noteoffset && perpectTop + 0.15 > noteoffset) {
-            renewalStatus("good",1,true,"샌즈!")
+            renewalStatus("good",1,true,"샌즈!","yellow")
         } else if (perpectTop - 0.3 < noteoffset && perpectTop + 0.3 > noteoffset) {
-            renewalStatus("miss",0,false,"파피루스..")
+            renewalStatus("miss",0,false,"파피루스...","#ddd")
         }
         //콤보창 표시
         $(".combo").show();
@@ -251,7 +253,7 @@ function startTriggerInit(){
                                     top: "100%"
                                 }, speed, "linear", function() {
                                     if (this.classList.contains("pushed") == false) {
-                                        showMessage(noteHorizon, "파피루스...")
+                                        showMessage(noteHorizon, "파피루스...","#ddd")
                                         addCombo(false);
                                         $(".n-miss").text(function(i, v) {
                                             return parseInt(v) + 1
