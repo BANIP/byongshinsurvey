@@ -173,8 +173,11 @@ let noteInfo = notes
     $("body").on("touchstart", function(e) {
         e.preventDefault();
         const touches = e.originalEvent.touches;
+        const now = Date.now();
         for(let i = 0; i < touches.length; i++){
-            const touch = touches.item(i); 
+            
+            const touch = touches.item(i);
+            console.log(`%c${now}:  ${touch.identifier} ${touch.pageX} ${touch.pageY}`,`color:white;background:hsl(${now},100%,50%);`) 
             if( remainTouches[ touch.identifier ] ) continue;
 
             let p = getTouchPosition(touch);
