@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/megalovania.css"></rel>
+  <title>Document</title>
+</head>
+<body>
+  <div id="display">
+    <div id="humen">
+        <br>와!! => <span value="0" class="n-great">0</span>개
+        <br>샌즈!! => <span value="0" class="n-good">0</span>개
+        <br>파피루스.. => <span value="0" class="n-miss">0</span>개
+        <br>점수 => <span value="0" class="n-score">0</span>점
+        <br>최대콤보 => <span value="0" class="n-maxcombo">0</span>회
+     </div>
+     <hr class="judgeline" />
+     <div class="key-intro position-0">Z</div>
+     <div class="key-intro position-1">X</div>
+     <div class="key-intro position-2">.</div>
+     <div class="key-intro position-3">/</div>
+     <div class="combo">0</div>
+  </div>
+  
+  <div class="result hide">
+      <span class="score"></span>
+  </div>
+  
+  <p class="message cloneable"></p>
+  <audio controls class='gameaudio hide'><source src='https://s1.vocaroo.com/media/download_temp/Vocaroo_s1ATLdnhO2Xo.mp3'></audio>
+  <img src="./img/sans_head.png" class="note cloneable" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="./js/origin.js"></script>
+  <script src="./js/megalovania.js"></script>
+  <sriprt src="https://hammerjs.github.io/dist/hammer.min.js"></sriprt>
+</body>
+</html>

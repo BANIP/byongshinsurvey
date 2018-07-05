@@ -1,0 +1,104 @@
+body,html{
+    height:100vh;
+    padding:0vw;margin:0;
+    
+}
+html{
+    background-color:black;
+}
+body{
+    padding:1vw;
+    overflow:hidden;
+    
+    background: url('../img/sans_gif.gif');
+    background-repeat:no-repeat;
+    background-position:50%;
+    background-size:30%;
+    color:white;
+}
+
+.note{
+    width:10vw;
+}
+
+#display{
+    display:block;
+    width:95vw;
+    height:95vh;
+    border:#777 solid 2px;
+    border-radius:20px;
+    overflow:hide;
+            position:relative;
+}
+hr.judgeline{
+    position:absolute;
+    bottom:22vh;
+    border:2px #ccc solid;
+    width:100%
+
+}
+#humen{
+position:absolute;
+top:0%;
+right:100px;
+}
+.note{
+    position:absolute;
+    transform:translate(-50%,-50%);
+}
+.cloneable{
+    display:none;
+}
+.position-0{
+    left:12.5%;
+}
+.position-1{
+    left:37.5%;
+}
+.position-2{
+    left:62.5%;
+}
+.position-3{
+    left:87.5%;
+
+}
+.message{
+position:absolute;
+transform:translate(-50%,-50%);
+bottom:25vh;
+font-size:20px;
+}
+.key-intro{
+    bottom:3vh;
+    position:absolute;
+    border:#4CAF50 solid 2px;
+    border-radius:5px;
+    background:none;
+    color:#4CAF50;
+    font-size:5vw;
+    padding:3vh 5vw;
+    transform:translate(-50%,0);
+    background:white;
+}
+.key-intro.push{
+    color:white;
+    background:#4CAF50;
+}
+.combo{
+    color:black;
+    text-shadow:0px 0px 2px #ff0000;
+    font-size:10vw;
+    padding:0 8vw 4vw 8vw;
+    position:absolute;
+    top:20vh;
+    left:12vw;
+    background:url('../img/speech-bubble.svg');
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position: 50%;
+    text-align:center;
+    display:none;
+}
+    .hide{
+         display:none;
+     }
