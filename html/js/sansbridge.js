@@ -73,7 +73,8 @@ const startBridge = () => {
                 border: "1px solid #4CAF50",
                 background: "white",
                 color: "#4CAF50",
-                display:"none"
+                display:"none",
+                testAlign:"center",
             }).appendTo("body").fadeIn();
             resolve(3000)
         },
@@ -86,7 +87,7 @@ const startBridge = () => {
         },
         2:(resolve) => {
             try{document.body.webkitRequestFullScreen()} catch{}
-            try{document.body.RequestFullScreen()} catch{}
+            try{document.body.requestFullScreen()} catch{}
             $("body").append($sansMes);
             audios.birdNoise.play();
             sansTyping("정말 아름다운 날이야.",() => resolve(2000))
