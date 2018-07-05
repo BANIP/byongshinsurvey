@@ -175,6 +175,7 @@ const setCommand = (commands,callback,dom = document.body) => {
         if(leftCommands.length == 1){
             callback();
             if(isMobile.any){
+                $(".flower.second").off("click");
                 try{document.body.webkitRequestFullScreen()} catch{}
                 try{document.body.requestFullScreen()} catch{}
             }

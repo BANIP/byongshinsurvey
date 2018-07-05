@@ -1,3 +1,4 @@
+
 /**
  * case stepmania
  * let noteInfo = notes
@@ -46,6 +47,7 @@ let noteInfo = notes
         speed = 600;
         if(isMobile.any) offset -= 300
     var playInterval;
+    let isStart = false;
     
     function showMessage(pclass, descript) {
         var mes = $(".cloneable.message").clone();
@@ -172,7 +174,7 @@ let noteInfo = notes
 
     let remainTouches = []
     $("body").on("touchstart", function(e) {
-        e.preventDefault();
+        if(isStart) e.preventDefault();
         const touches = e.originalEvent.touches;
         const now = Date.now();
         console.log(touches.length)
@@ -189,11 +191,11 @@ let noteInfo = notes
     });
 
     $("body").on("touchmove", function(e) {
-        e.preventDefault();
+        if(isStart) e.preventDefault();
     });
 
     $("body").on("touchend",(e) => {
-        e.preventDefault();
+        if(isStart) e.preventDefault();
         const isEnabled = [false,false,false,false];
 
         //remainTouches 초기화
@@ -237,7 +239,7 @@ let noteInfo = notes
     
 
 function startTriggerInit(){
-    let isStart = false;
+    
     $("body .startbutton").on("touchstart click keydown", function() {
         if(isMobile.any){
             try{document.body.webkitRequestFullScreen()} catch{}
