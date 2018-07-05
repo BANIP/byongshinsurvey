@@ -87,8 +87,6 @@ const startBridge = () => {
             resolve(3000)
         },
         2:(resolve) => {
-            try{document.body.webkitRequestFullScreen()} catch{}
-            try{document.body.requestFullScreen()} catch{}
             $("body").append($sansMes);
             audios.birdNoise.play();
             sansTyping("정말 아름다운 날이야.",() => resolve(2000))
@@ -165,7 +163,14 @@ const setCommand = (commands,callback,dom = document.body) => {
         if(leftCommands.length == 2) leftCommands.shift(); 
     })
     $(".flower.second").click(() => {
-        if(leftCommands.length == 1) callback();
+        if(leftCommands.length == 1){
+            callback();
+            if(isMobile.any){
+                try{document.body.webkitRequestFullScreen()} catch{}
+                try{document.body.requestFullScreen()} catch{}
+            }
+            
+        } 
     })
     hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 }

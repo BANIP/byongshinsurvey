@@ -241,6 +241,10 @@ function startTriggerInit(){
     $("body .startbutton").on("touchstart click keydown", function() {
         if(isStart) return
         isStart = true;
+        if(isMobile.any){
+            try{document.body.webkitRequestFullScreen()} catch{}
+            try{document.body.requestFullScreen()} catch{}
+        }
         $(".startbutton").addClass("hide");
         setTimeout(function() {
             $(".gameaudio")[0].play();
@@ -368,8 +372,8 @@ function startTriggerInit(){
             },
             3 : (resolve) => {
                 $(`<div>플레이어 랭크 ${playerRank}랭크</div>`).appendTo("body")
-                if(combo == great + good) $(`<div>풀콤보!!</div>`).appendTo("body")
-                if(allScore == score) $(`<div>퍼펙트!!!!!!</div>`).appendTo("body")
+                if(miss == 0) $(`<div>풀콤보!!</div>`).appendTo("body")
+                if(miss == 0 && good == 0) $(`<div>퍼펙트!!!!!!</div>`).appendTo("body")
                 resolve();
             },
             4 : (resolve) => {

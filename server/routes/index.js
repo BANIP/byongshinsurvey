@@ -121,25 +121,27 @@ module.exports = function(app,{ Survey, MegaloResult }){
                 result => resolve(result)
             )
         }).then(result => new Promise((resolve,reject) => {
-            var gameResult = new MegaloResult();
-
-            gameResult.great = req.body.great;
-            gameResult.good = req.body.good;
-            gameResult.miss = req.body.miss;
-            gameResult.score = req.body.score;
-            gameResult.allScore = req.body.allScore;
-            gameResult.playerRank = req.body.playerRank;
-            gameResult.percent = req.body.percent;
-            gameResult.combo = req.body.combo;
-            gameResult.name = result.name;
-            gameResult.channelImg = result.channelImg;
-            gameResult.id = result.id;
+            const saveFromOuterData = (gameresult,req,result) => {
+                gameResult.great = req.body.great;
+                gameResult.good = req.body.good;
+                gameResult.miss = req.body.miss;
+                gameResult.score = req.body.score;
+                gameResult.allScore = req.body.allScore;
+                gameResult.playerRank = req.body.playerRank;
+                gameResult.percent = req.body.percent;
+                gameResult.combo = req.body.combo;
+                gameResult.name = result.name;
+                gameResult.channelImg = result.channelImg;
+                gameResult.id = result.id;
+                return gameResult;
+            }
+            var gameResult = saveFromOuterData(new MegaloResult(),req,result);
 
             MegaloResult.find({id:result.id}, (err, existingResult) => {
                 if(err) return reject(EC.DATABASE_ERROR);
                 if(!existingResult) existingResult = gameResult;
                 else if(gameResult.score > existingResult.score)
-                    existingResult = gameResult;
+                    saveFromOuterData(existingResult,req,result)
                 existingResult.save((err) => {
                     if(err) return reject(err);
                     outputSuccess(res,{status:"save success"});
