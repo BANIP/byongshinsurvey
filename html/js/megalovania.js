@@ -42,7 +42,8 @@ let noteInfo = notes
 
         var nowTime = 0,
         interval = 100,
-        offset = 2900,
+        offset = 2950,
+        threshold = 50,
         perpectTop = $("hr.judgeline").offset().top / innerHeight - 0.05,
         speed = 600;
         
@@ -67,46 +68,29 @@ let noteInfo = notes
     function pushnote(pclass) {
         $(pclass + ".key-intro")[0].classList.add("push");
         var note = $(pclass + ".note:first")
-        if(note.length == 0)return;
+        if(note.length == 0) return;
         var timing = note.css("top").toString().replace("px", "");
         var noteoffset = $("#display .note").position().top / innerHeight;
     
         if (timing == undefined) return;
         pclass = pclass.substring(1);
-        if (perpectTop - 0.04 < noteoffset && perpectTop + 0.04 > noteoffset) {
-            $(".n-great").text(function(i, v) {
-                return parseInt(v) + 1
-            });
-            $(".n-score").text(function(i, v) {
-                return parseInt(v) + 2
-            });
-            addCombo(true);
-            showMessage(pclass, "와!!");
-    
-            note[0].classList.add("pushed");
-            note.remove();
-        } else if (perpectTop - 0.15 < noteoffset && perpectTop + 0.15 > noteoffset) {
-            $(".n-good").text(function(i, v) {
-                return parseInt(v) + 1
-            });
-            $(".n-score").text(function(i, v) {
-                return parseInt(v) + 1
-            });
-            addCombo(true);
-            showMessage(pclass, "샌즈!!");
-    
-            note[0].classList.add("pushed");
-            note.remove();
-        } else if (perpectTop - 0.3 < noteoffset && perpectTop + 0.3 > noteoffset) {
-            $(".n-miss").text(function(i, v) {
-                return parseInt(v) + 1
-            });
-            addCombo(false);
-            showMessage(pclass, "파피루스..");
-    
-            note[0].classList.add("pushed");
-            note.remove();
+        const renewalStatus = (targetStatus,scoreAmount,isAddcombo,message) => {
+            $(".n-" + targetStatus).text((i, v) => parseInt(v) + 1 );
+            $(".n-score").text((i, v) => parseInt(v) + scoreAmount );
+            addCombo(isAddcombo);
+            showMessage(pclass, message);
         }
+
+        if (perpectTop - 0.04 < noteoffset && perpectTop + 0.04 > noteoffset) {
+            renewalStatus("great",2,true,"와!!")
+        } else if (perpectTop - 0.15 < noteoffset && perpectTop + 0.15 > noteoffset) {
+            renewalStatus("good",1,true,"샌즈!")
+        } else if (perpectTop - 0.3 < noteoffset && perpectTop + 0.3 > noteoffset) {
+            renewalStatus("miss",0,false,"파피루스..")
+        }
+        //눌려진상태 갱신
+        note[0].classList.add("pushed");
+        note.remove();
         //콤보창 표시
         $(".combo").show();
         clearInterval(comboClearInterval);
@@ -254,23 +238,24 @@ function startTriggerInit(){
                     (function() {
                         var notearr = noteInfo.shift();
                         setTimeout(function() {
-                            var note = $(".note.cloneable").clone();
+                            var $note = $(".note.cloneable").clone();
                             var noteHorizon = "position-" + notearr[1];
-                            note[0].classList.remove("cloneable");
-                            note[0].classList.add(noteHorizon);
-                            note.appendTo("#display")
-                                .animate({
-                                    top: "100%"
-                                }, speed, "linear", function() {
-                                    if (this.classList.contains("pushed") == false) {
-                                        showMessage(noteHorizon, "파피루스...")
-                                        addCombo(false);
-                                        $(".n-miss").text(function(i, v) {
-                                            return parseInt(v) + 1
-                                        });
-                                        $(this).remove();
-                                    }
+                            $note.removeClass("cloneable").addClass(noteHorizon)
+                                 .appendTo("#display")
+
+                            setTimeout(() => $note.addClass("drop"),threshold);
+                            setTimeout(function(){
+                                console.log(this)
+                                if ( this.length == 0 ) return 
+                                if ( this.hasClass("pushed") ) return
+                                
+                                showMessage(noteHorizon, "파피루스...")
+                                addCombo(false);
+                                $(".n-miss").text(function(i, v) {
+                                    return parseInt(v) + 1
                                 });
+                                $(this).remove();
+                            }.bind( $note ), speed + threshold);
                         }, notearr[0] - nowTime);
                     })()
                 }

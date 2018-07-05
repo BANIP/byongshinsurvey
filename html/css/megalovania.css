@@ -28,7 +28,17 @@ body{
 }
 .note{
     width:10vw;
+    top:0%;
+
+    position:absolute;
+    transform:translate(-50%,-50%);
 }
+
+.note.drop{
+    transition:0.6s linear all;
+    top:100%;
+}
+
 
 #display{
     display:block;
@@ -51,10 +61,7 @@ position:absolute;
 top:0%;
 right:100px;
 }
-.note{
-    position:absolute;
-    transform:translate(-50%,-50%);
-}
+
 .cloneable{
     display:none;
 }

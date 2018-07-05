@@ -19,22 +19,22 @@ module.exports = function(app,{ Survey, MegaloResult }){
             return null;
         }
        try{
-       request.get({
-            url: 'https://www.googleapis.com/youtube/v3/channels',
-            qs: {
-                part:"snippet",
-                mine:true,
-                access_token
-            }
-          }, (err, gres, body) => {
-            if(err) return errCallback(err)
-            body = JSON.parse(body);
-            const {snippet, id} = body.items[0];
-            const channelImg = snippet.thumbnails.high.url;
-            const name = snippet.title;
-            successCallback({id, channelImg, name});
-        });
-        } catch{
+        request.get({
+                url: 'https://www.googleapis.com/youtube/v3/channels',
+                qs: {
+                    part:"snippet",
+                    mine:true,
+                    access_token
+                }
+            }, (err, gres, body) => {
+                if(err) return errCallback(err)
+                body = JSON.parse(body);
+                const {snippet, id} = body.items[0];
+                const channelImg = snippet.thumbnails.high.url;
+                const name = snippet.title;
+                successCallback({id, channelImg, name});
+            });
+        } catch (e) {
             errCallback(EC.GOOGLE_API_ERROR);
         }
     }
