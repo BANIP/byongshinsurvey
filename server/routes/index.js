@@ -121,7 +121,8 @@ module.exports = function(app,{ Survey, MegaloResult }){
                 result => resolve(result)
             )
         }).then(result => new Promise((resolve,reject) => {
-            const saveFromOuterData = (gameresult,req,result) => {
+            const saveFromOuterData = (req,result) => {
+                const gameResult = {};
                 gameResult.great = req.body.great;
                 gameResult.good = req.body.good;
                 gameResult.miss = req.body.miss;
@@ -135,19 +136,16 @@ module.exports = function(app,{ Survey, MegaloResult }){
                 gameResult.id = result.id;
                 return gameResult;
             }
-            var gameResult = saveFromOuterData(new MegaloResult(),req,result);
+            var gameResultObj = saveFromOuterData(req,result);
 
-            MegaloResult.find({id:result.id}, (err, existingResult) => {
-                if(err) return reject(EC.DATABASE_ERROR);
-                if(!existingResult) existingResult = gameResult;
-                else if(gameResult.score > existingResult.score)
-                    saveFromOuterData(existingResult,req,result)
-                existingResult.save((err) => {
+            MegaloResult.update(
+                {id:result.id}, gameResultObj, 
+                {upsert: true, setDefaultsOnInsert: true}, 
+                (err) => {
                     if(err) return reject(err);
                     outputSuccess(res,{status:"save success"});
-                });
-            })
-
+                }
+            );
 
         })).catch(err => outputError(res,err));
     })

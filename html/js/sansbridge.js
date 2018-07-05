@@ -148,19 +148,28 @@ const startBridge = () => {
     })
     
 }
-const setCommand = (commands,callback,dom = document.body) => {
-    let leftCommands = commands.concat();
 
+
+const setCommand = (commands,callback,dom = document.body) => {
+
+    let leftCommands = commands.concat();
+    let randomleftcountInterval = setInterval(() => {
+        $(".leftcount").html(Math.floor(Math.random() * 10));
+    }, 15);
     var hammertime = new Hammer(document.body);
 
     hammertime.on('swipeup swipedown swipeleft swiperight', function(ev) {
+        clearInterval(randomleftcountInterval);
+
         const eventType = ev.type;
         if("swipe" + leftCommands.shift() == eventType)
             true;
         else leftCommands = commands.concat();
+        $(".leftcount").html(leftCommands.length );
     });
     $(".flower.first").click(() => {
         if(leftCommands.length == 2) leftCommands.shift(); 
+        $(".leftcount").html(leftCommands.length );
     })
     $(".flower.second").click(() => {
         if(leftCommands.length == 1){
@@ -174,6 +183,7 @@ const setCommand = (commands,callback,dom = document.body) => {
     })
     hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 }
+
 
 setCommand(["up","up"
     ,"down","down"

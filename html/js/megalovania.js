@@ -239,12 +239,13 @@ let noteInfo = notes
 function startTriggerInit(){
     let isStart = false;
     $("body .startbutton").on("touchstart click keydown", function() {
-        if(isStart) return
-        isStart = true;
         if(isMobile.any){
             try{document.body.webkitRequestFullScreen()} catch{}
             try{document.body.requestFullScreen()} catch{}
         }
+        if(isStart) return
+        isStart = true;
+
         $(".startbutton").addClass("hide");
         setTimeout(function() {
             $(".gameaudio")[0].play();
