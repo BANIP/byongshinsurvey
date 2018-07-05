@@ -190,28 +190,31 @@ let noteInfo = notes
 
             let p = getTouchPosition(touch);
             if(p != null) pushnote(".position-" + p);
+            touch.position = p;
             remainTouches[ touch.identifier ] = touch;
         }
     });
 
+    
     $("body").on("touchend",(e) => {
         const isEnabled = [false,false,false,false];
-
-        //remainTouches 초기화
-        remainTouches = [];
+        let deletedTouch;
         const touches = e.originalEvent.touches;
-        for(let i = 0; i < touches.length; i++){
-            const touch = touches.item(i);
-            remainTouches[ touch[identifier] ] = touch;
-            let p = getTouchPosition(touch);
-            if(p != null) isEnabled[p];
-
+        const touchids = []
+        // 활성된 터치 서치
+        for(var i = 0;i < touches.length; i++){
+            const touchid = touches.item(i).identifier;
+            touchids.push(touchid);
         }
+
+        //이전상태의 터치에서 비활성된 터치 검색
+        remainTouches.forEach((remainTouch,key) => {
+            if(!remainTouch) return;
+            if(!touchids.includes(key)) deletedTouch = remainTouch;
+        });
+        
         // push상태 제거
-        isEnabled.forEach((state,key) => {
-            if(state == false) 
-                $(`.position-${key}.key-intro`)[0].classList.remove("push");
-        })
+        $(`.position-${ deletedTouch.position }.key-intro`).removeClass("push");
 
     })
 
