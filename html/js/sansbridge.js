@@ -65,6 +65,7 @@ const startBridge = () => {
         0:(resolve) => {
             audios.get.play();
             $("html").css("background","black");
+            $("body").css("background","black");
             $("body").css("overflow","hidden");
             $("body").on("touchmove",(e) => e.preventDefault());
             $("body").on("mousemove",(e) => e.preventDefault());

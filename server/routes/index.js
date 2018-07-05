@@ -135,12 +135,12 @@ module.exports = function(app,{ Survey, MegaloResult }){
             gameResult.channelImg = result.channelImg;
             gameResult.id = result.id;
 
-            Survey.find({id:result.id}, (err, existingResult) => {
+            MegaloResult.find({id:result.id}, (err, existingResult) => {
                 if(err) return reject(EC.DATABASE_ERROR);
                 if(!existingResult) existingResult = gameResult;
                 else if(gameResult.score > existingResult.score)
                     existingResult = gameResult;
-                survey.save((err) => {
+                existingResult.save((err) => {
                     if(err) return reject(err);
                     outputSuccess(res,{status:"save success"});
                 });
