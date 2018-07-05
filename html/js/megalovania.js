@@ -44,6 +44,7 @@ let noteInfo = notes
         offset = 2900,
         perpectTop = $("hr.judgeline").offset().top / innerHeight - 0.05,
         speed = 600;
+        if(isMobile.any) offset += 200
     var playInterval;
     
     function showMessage(pclass, descript) {
@@ -170,6 +171,7 @@ let noteInfo = notes
 
     let remainTouches = []
     $("body").on("touchstart", function(e) {
+        e.preventDefault();
         const touches = e.originalEvent.touches;
         for(let i = 0; i < touches.length; i++){
             const touch = touches.item(i); 
@@ -186,6 +188,7 @@ let noteInfo = notes
     });
 
     $("body").on("touchend",(e) => {
+        e.preventDefault();
         const isEnabled = [false,false,false,false];
 
         //remainTouches 초기화

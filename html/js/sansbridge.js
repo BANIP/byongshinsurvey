@@ -68,12 +68,13 @@ const startBridge = () => {
             $("body").css("overflow","hidden");
             $("body").on("touchmove",(e) => e.preventDefault());
             $("body").on("mousemove",(e) => e.preventDefault());
-            $("<div>Hidden Area Unlatched </div> ").css({
+            $("<div>Hidden Area Unlatched </div> ").addClass("absolutlyCenter").css({
                 padding: "2em",
                 border: "1px solid #4CAF50",
                 background: "white",
-                color: "#4CAF50"
-            })
+                color: "#4CAF50",
+                display:"none"
+            }).appendTo("body").fadeIn();
             resolve(3000)
         },
         1:(resolve) => {
