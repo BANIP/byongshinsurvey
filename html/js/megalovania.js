@@ -121,16 +121,16 @@ let noteInfo = notes
     }
     $("body").on("keydown", function(e) {
         switch (e.keyCode) {
-            case 90:
+            case 90: case 65:
                 pushnote(".position-0");
                 break;
-            case 88:
+            case 88: case 83:
                 pushnote(".position-1");
                 break;
-            case 190:
+            case 190: case 186:
                 pushnote(".position-2");
                 break;
-            case 191:
+            case 191: case 222:
                 pushnote(".position-3");
                 break;
         }
@@ -208,16 +208,16 @@ let noteInfo = notes
 
     $("body").on("keyup", function(e) {
         switch (e.keyCode) {
-            case 90:
+            case 90: case 65:
                 $(".position-0.key-intro")[0].classList.remove("push");
                 break;
-            case 88:
+            case 88: case 83:
                 $(".position-1.key-intro")[0].classList.remove("push");
                 break;
-            case 190:
+            case 190: case 186:
                 $(".position-2.key-intro")[0].classList.remove("push");
                 break;
-            case 191:
+            case 191: case 222:
                 $(".position-3.key-intro")[0].classList.remove("push");
                 break;
         }
