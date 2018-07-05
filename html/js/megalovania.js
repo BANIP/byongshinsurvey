@@ -44,7 +44,7 @@ let noteInfo = notes
         offset = 2900,
         perpectTop = $("hr.judgeline").offset().top / innerHeight - 0.05,
         speed = 600;
-        if(isMobile.any) offset += 200
+        if(isMobile.any) offset -= 300
     var playInterval;
     
     function showMessage(pclass, descript) {
