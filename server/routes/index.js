@@ -11,13 +11,14 @@ var EC = {
 }
 
 module.exports = function(app,{ Survey, MegaloResult }){
-        const getUserInfo = (req,res,errCallback,successCallback) => {
+    const getUserInfo = (req,res,errCallback,successCallback) => {
 
         const access_token = req.session.access_token;
         if(access_token == undefined){
             errCallback(EC.SESSION_CANNNOT_FOUND);
             return null;
         }
+       try{
        request.get({
             url: 'https://www.googleapis.com/youtube/v3/channels',
             qs: {
@@ -33,6 +34,9 @@ module.exports = function(app,{ Survey, MegaloResult }){
             const name = snippet.title;
             successCallback({id, channelImg, name});
         });
+        } catch{
+            errCallback(EC.GOOGLE_API_ERROR);
+        }
     }
 
     const outputError = (res,message,code = 403 ) =>{
