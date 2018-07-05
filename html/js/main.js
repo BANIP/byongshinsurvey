@@ -10,7 +10,7 @@ var manageView = (function () {
         // 사용자의 채널과 이름으로 css스타일 적용
         appealUser: function (name, channelImg) {
             $("body").css({
-                background: "url(" + channelImg + ")",
+                backgrsound: "url(" + channelImg + ")",
                 backgroundSize: "10vw 10vw"
             });
             $(".hello").text(name + "아 반가워~~");

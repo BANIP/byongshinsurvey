@@ -10,7 +10,7 @@ var EC = {
     GOOGLE_API_ERROR : [105,"구글 API가 예외를 뱉음"]
 }
 
-module.exports = function(app,Survey){
+module.exports = function(app,{ Survey, MegaloResult }){
         const getUserInfo = (req,res,errCallback,successCallback) => {
 
         const access_token = req.session.access_token;
@@ -111,8 +111,43 @@ module.exports = function(app,Survey){
             });
 
         })).catch(err => outputError(res,err));
+    })
+
+    app.post('/api/megalo_save',function(req,res){
+        new Promise((resolve,reject) => {
+            getUserInfo(
+                req,res,
+                err => reject(err),
+                result => resolve(result)
+            )
+        }).then(result => new Promise((resolve,reject) => {
+            var gameResult = new MegaloResult();
+
+            gameResult.great = req.body.great;
+            gameResult.good = req.body.good;
+            gameResult.miss = req.body.miss;
+            gameResult.score = req.body.score;
+            gameResult.allScore = req.body.allScore;
+            gameResult.playerRank = req.body.playerRank;
+            gameResult.percent = req.body.percent;
+            gameResult.combo = req.body.combo;
+            gameResult.name = result.name;
+            gameResult.channelImg = result.channelImg;
+            gameResult.id = result.id;
+
+            Survey.find({id:result.id}, (err, existingResult) => {
+                if(err) return reject(EC.DATABASE_ERROR);
+                if(!existingResult) existingResult = gameResult;
+                else if(gameResult.score > existingResult.score)
+                    existingResult = gameResult;
+                survey.save((err) => {
+                    if(err) return reject(err);
+                    outputSuccess(res,{status:"save success"});
+                });
+            })
 
 
+        })).catch(err => outputError(res,err));
     })
 
     app.get('/api/get_userinfo',function(req,res){

@@ -10,6 +10,7 @@ module.exports = function(server){
 
   // DEFINE MODEL
   const Survey = require("./models/survey");
+  const MegaloResult = require("./models/megaloresult");
 
 
   // [SET SESSION]
@@ -41,7 +42,9 @@ module.exports = function(server){
 
 
   // [SET ROUTER]
-  const route = require('./routes')(app,Survey);
+  const route = require('./routes')(app,{
+    Survey,MegaloResult
+  });
 
 
   return app;
