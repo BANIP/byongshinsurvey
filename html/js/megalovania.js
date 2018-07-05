@@ -24,8 +24,8 @@
             return result;
         },[])
  */
-
-window.history.pushState(null, null, "/survey/#");
+if(location.origin != "http://localhost:8080" )
+    window.history.pushState(null, null, "/survey/#");
 
 let time = 0, bpm = 240.000; measuretick = 60 / (bpm) * 1000 * 2;
 let noteInfo = notes
@@ -222,13 +222,17 @@ let noteInfo = notes
                 break;
         }
     });
-    
-    let isEventStart = false;
-    $(".gameaudio").on("canplaythrough canplay", function() {
-        // 재실행 방지
-        if(isEventStart) return;
-        isEventStart = true;
+    $(".gameaudio").on("canplay", function() {
+        $(".startbutton").removeClass("hide")
+        startTriggerInit();
+    });
 
+function startTriggerInit(){
+    let isStart = false;
+    $("body").on("click keydown", function() {
+        if(isStart) return
+        isStart = true;
+        $(".startbutton").addClass("hide");
         setTimeout(function() {
             $(".gameaudio")[0].play();
         }, offset);
@@ -296,7 +300,7 @@ let noteInfo = notes
         }, interval);
     
     });
-
+}
     
     function setProgress(progress,startPosition = 0){
         const resolveCallback = (interval = 1000,nextPosition = startPosition + 1) => {

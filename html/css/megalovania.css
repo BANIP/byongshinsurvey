@@ -18,6 +18,14 @@ body{
     color:white;
 }
 
+.startbutton{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:10vw;
+    
+    transform:translate(-50%,-50%);
+}
 .note{
     width:10vw;
 }
