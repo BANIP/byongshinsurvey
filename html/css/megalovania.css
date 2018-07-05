@@ -28,7 +28,7 @@ body{
 }
 .note{
     width:10vw;
-    top:0%;
+    top:3%;
 
     position:absolute;
     transform:translate(-50%,-50%);
@@ -36,7 +36,7 @@ body{
 
 .note.drop{
     transition:0.6s linear all;
-    top:100%;
+    top:103%;
 }
 
 

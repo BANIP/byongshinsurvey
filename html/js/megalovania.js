@@ -80,8 +80,12 @@ let noteInfo = notes
             $(".n-score").text((i, v) => parseInt(v) + scoreAmount );
             addCombo(isAddcombo);
             showMessage(pclass, message);
-        }
 
+            //눌려진상태 갱신
+            note[0].classList.add("pushed");
+            note.remove();
+        }
+        console.log(noteoffset)
         if (perpectTop - 0.04 < noteoffset && perpectTop + 0.04 > noteoffset) {
             renewalStatus("great",2,true,"와!!")
         } else if (perpectTop - 0.15 < noteoffset && perpectTop + 0.15 > noteoffset) {
@@ -89,9 +93,7 @@ let noteInfo = notes
         } else if (perpectTop - 0.3 < noteoffset && perpectTop + 0.3 > noteoffset) {
             renewalStatus("miss",0,false,"파피루스..")
         }
-        //눌려진상태 갱신
-        note[0].classList.add("pushed");
-        note.remove();
+
         //콤보창 표시
         $(".combo").show();
         clearInterval(comboClearInterval);
