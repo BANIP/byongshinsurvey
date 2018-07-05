@@ -174,10 +174,6 @@ let noteInfo = notes
 
     let remainTouches = []
 
-    $("*").on("touchstart touchmove touchend",function(e){
-        
-    })
-
     $("body").on("touchstart", function(e) {
         if(isStart) e.preventDefault();
         const touches = e.originalEvent.touches;
