@@ -45,6 +45,7 @@ let noteInfo = notes
         perpectTop = $("hr.judgeline").offset().top / innerHeight - 0.05,
         speed = 600;
         
+    if(isMobile.any) offset += 300;
     var playInterval;
     let isStart = false;
     
@@ -203,7 +204,7 @@ let noteInfo = notes
 
     })
 
-    
+
 
     $("body").on("keyup", function(e) {
         switch (e.keyCode) {
@@ -347,8 +348,7 @@ function startTriggerInit(){
             type:"POST",
             data:scoreResult
         }).done((result) => {
-            const { name,channelImg} = result.result;
-            playername = name;
+
         })
 
         const progress = {
