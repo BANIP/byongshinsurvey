@@ -25,7 +25,7 @@
         },[])
  */
 
-window.history.pushState(null, null, "/survey");
+window.history.pushState(null, null, "/survey/#");
 
 let time = 0, bpm = 240.000; measuretick = 60 / (bpm) * 1000 * 2;
 let noteInfo = notes
@@ -224,9 +224,9 @@ let noteInfo = notes
     });
     
     
-    $("audio").on("canplaythrough", function() {
+    $(".gameaudio").on("canplaythrough", function() {
         setTimeout(function() {
-            $("audio")[0].play();
+            $(".gameaudio")[0].play();
         }, offset);
         playInterval = setInterval(function() {
             var isNoteZero = noteInfo.length == 0;

@@ -1,5 +1,6 @@
 body,html{
     height:100vh;
+    margin:0vw;
     padding:0vw;margin:0;
     
 }
@@ -25,7 +26,7 @@ body{
     display:block;
     width:95vw;
     height:95vh;
-    border:#777 solid 2px;
+    border:#fff solid 2px;
     border-radius:20px;
     overflow:hide;
             position:relative;
