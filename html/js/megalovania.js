@@ -45,7 +45,7 @@ let noteInfo = notes
         perpectTop = $("hr.judgeline").offset().top / innerHeight - 0.05,
         speed = 600;
         
-    if(isMobile.any) offset -= 500;
+    if(isMobile.any) offset -= 800;
     var playInterval;
     let isStart = false;
     
