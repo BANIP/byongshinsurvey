@@ -223,7 +223,7 @@ let noteInfo = notes
         }
     });
     
-    const isEventStart = false;
+    let isEventStart = false;
     $(".gameaudio").on("canplaythrough canplay", function() {
         // 재실행 방지
         if(isEventStart) return;
