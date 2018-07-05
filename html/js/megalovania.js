@@ -222,10 +222,11 @@ let noteInfo = notes
                 break;
         }
     });
-    $(".gameaudio").on("canplay", function() {
+    setTimeout(() => {
         $(".startbutton").removeClass("hide")
         startTriggerInit();
-    });
+    },2000)
+    
 
 function startTriggerInit(){
     let isStart = false;
