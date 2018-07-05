@@ -1,4 +1,3 @@
-
 /**
  * case stepmania
  * let noteInfo = notes
@@ -42,11 +41,9 @@ let noteInfo = notes
 
         var nowTime = 0,
         interval = 100,
-        offset = 2950,
-        threshold = 50,
+        offset = 2900,
         perpectTop = $("hr.judgeline").offset().top / innerHeight - 0.05,
         speed = 600;
-        if(isMobile.any) offset += 300;
         
     var playInterval;
     let isStart = false;
@@ -69,7 +66,7 @@ let noteInfo = notes
     function pushnote(pclass) {
         $(pclass + ".key-intro")[0].classList.add("push");
         var note = $(pclass + ".note:first")
-        if(note.length == 0) return;
+        if(note.length == 0)return;
         var timing = note.css("top").toString().replace("px", "");
         var noteoffset = $("#display .note").position().top / innerHeight;
     
@@ -85,7 +82,7 @@ let noteInfo = notes
             note[0].classList.add("pushed");
             note.remove();
         }
-        console.log(noteoffset)
+
         if (perpectTop - 0.04 < noteoffset && perpectTop + 0.04 > noteoffset) {
             renewalStatus("great",2,true,"와!!")
         } else if (perpectTop - 0.15 < noteoffset && perpectTop + 0.15 > noteoffset) {
@@ -93,7 +90,6 @@ let noteInfo = notes
         } else if (perpectTop - 0.3 < noteoffset && perpectTop + 0.3 > noteoffset) {
             renewalStatus("miss",0,false,"파피루스..")
         }
-
         //콤보창 표시
         $(".combo").show();
         clearInterval(comboClearInterval);
@@ -207,6 +203,8 @@ let noteInfo = notes
 
     })
 
+    
+
     $("body").on("keyup", function(e) {
         switch (e.keyCode) {
             case 90:
@@ -243,24 +241,23 @@ function startTriggerInit(){
                     (function() {
                         var notearr = noteInfo.shift();
                         setTimeout(function() {
-                            var $note = $(".note.cloneable").clone();
+                            var note = $(".note.cloneable").clone();
                             var noteHorizon = "position-" + notearr[1];
-                            $note.removeClass("cloneable").addClass(noteHorizon)
-                                 .appendTo("#display")
-
-                            setTimeout(() => $note.addClass("drop"),threshold);
-                            setTimeout(function(){
-                                console.log(this)
-                                if ( this.length == 0 ) return 
-                                if ( this.hasClass("pushed") ) return
-                                
-                                showMessage(noteHorizon, "파피루스...")
-                                addCombo(false);
-                                $(".n-miss").text(function(i, v) {
-                                    return parseInt(v) + 1
+                            note[0].classList.remove("cloneable");
+                            note[0].classList.add(noteHorizon);
+                            note.appendTo("#display")
+                                .animate({
+                                    top: "100%"
+                                }, speed, "linear", function() {
+                                    if (this.classList.contains("pushed") == false) {
+                                        showMessage(noteHorizon, "파피루스...")
+                                        addCombo(false);
+                                        $(".n-miss").text(function(i, v) {
+                                            return parseInt(v) + 1
+                                        });
+                                        $(this).remove();
+                                    }
                                 });
-                                $(this).remove();
-                            }.bind( $note ), speed + threshold);
                         }, notearr[0] - nowTime);
                     })()
                 }
