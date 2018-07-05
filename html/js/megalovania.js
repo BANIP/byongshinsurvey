@@ -175,10 +175,11 @@ let noteInfo = notes
     let remainTouches = []
 
     $("*").on("touchstart touchmove touchend",function(e){
-        if(isStart) e.preventDefault();
+        
     })
 
     $("body").on("touchstart", function(e) {
+        if(isStart) e.preventDefault();
         const touches = e.originalEvent.touches;
         const now = Date.now();
         console.log(touches.length)
@@ -195,8 +196,11 @@ let noteInfo = notes
         }
     });
 
-    
+    $("body").on("touchmove",(e) => {
+        if(isStart) e.preventDefault();
+    })
     $("body").on("touchend",(e) => {
+        if(isStart) e.preventDefault();
         const isEnabled = [false,false,false,false];
         let deletedTouch;
         const touches = e.originalEvent.touches;
