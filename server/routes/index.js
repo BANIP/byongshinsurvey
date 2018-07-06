@@ -29,6 +29,7 @@ module.exports = function(app,{ Survey, MegaloResult }){
             }, (err, gres, body) => {
                 if(err) return errCallback(err)
                 body = JSON.parse(body);
+                if(!body.items) return errCallback(err)
                 const {snippet, id} = body.items[0];
                 const channelImg = snippet.thumbnails.high.url;
                 const name = snippet.title;
